@@ -29,7 +29,7 @@ namespace MRBS.Project.BusinessAccessLayer.Services
 
 
 
-        public List<string> GetToken(User user)
+        public List<string> GenerateToken(User user)
         {
             try
             {

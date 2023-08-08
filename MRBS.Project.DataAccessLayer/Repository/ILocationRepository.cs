@@ -9,7 +9,7 @@ namespace MRBS.Project.DataAccessLayer.Repository
 {
     public interface ILocationRepository
     {
-        Task<List<Location>> GetAllLocation();
+        Task<List<Location>> GetAllLocations();
         Task<Location> GetLocationById(int id);
     }
 }

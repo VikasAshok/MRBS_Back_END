@@ -17,34 +17,34 @@ namespace MRBS.Project.BusinessAccessLayer.Services
             _meetingRoomRepository = meetingRoomRepository;
         }
 
-        public async Task<MeetingRoom> AddDetail(MeetingRoom meetingRoom)
+        public async Task<MeetingRoom> AddMeetingRoomDetail(MeetingRoom meetingRoom)
         {
-           return await _meetingRoomRepository.AddDetail(meetingRoom);
+           return await _meetingRoomRepository.AddMeetingRoomDetail(meetingRoom);
         }
 
-        public async Task<List<MeetingRoom>> GetAllDetail()
+        public async Task<List<MeetingRoom>> GetAllDetails()
         {
-            return await _meetingRoomRepository.GetAllDetail();
+            return await _meetingRoomRepository.GetAllDetails();
         }
 
-        public async Task<MeetingRoom> GetById(int id)
+        public async Task<MeetingRoom> GetMeetingRoomById(int id)
         {
-            return await _meetingRoomRepository.GetById(id);
+            return await _meetingRoomRepository.GetMeetingRoomById(id);
         }
 
-        public async Task<IEnumerable<MeetingRoomViewModel>> GetByLocationId(int id)
+        public async Task<IEnumerable<MeetingRoomViewModel>> GetMeetingRoomsByLocationId(int id)
         {
-            return await _meetingRoomRepository.GetByLocationId(id);
+            return await _meetingRoomRepository.GetMeetingRoomsByLocationId(id);
         }
 
-        public async Task RemoveDetail(int id)
+        public async Task RemoveMeetingRoomDetail(int id)
         {
-            await _meetingRoomRepository.RemoveDetail(id);
+            await _meetingRoomRepository.RemoveMeetingRoomDetail(id);
         }
 
-        public async Task<MeetingRoom> UpdateDetail(MeetingRoom meetingRoom)
+        public async Task<MeetingRoom> UpdateMeetingRoomDetail(MeetingRoom meetingRoom)
         {
-            return await _meetingRoomRepository.UpdateDetail(meetingRoom);
+            return await _meetingRoomRepository.UpdateMeetingRoomDetail(meetingRoom);
         }
     }
 }

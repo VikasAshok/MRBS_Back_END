@@ -22,7 +22,7 @@ namespace MRBS.Project.BusinessAccessLayer.Services
             return await _meetingRepository.AddDetail(meeting);
         }
 
-        public async Task<IEnumerable<MeetingsViewModel>> GetAllMeeting()
+        public async Task<IEnumerable<MeetingsViewModel>> GetAllMeetings()
         {
             return await _meetingRepository.GetAllDetail();
         }
@@ -32,12 +32,12 @@ namespace MRBS.Project.BusinessAccessLayer.Services
            return await _meetingRepository.GetById( id );
         }
 
-        public async Task RemoveMeeting(int id)
+        public async Task DeleteMeeting(int id)
         {
              await _meetingRepository.RemoveDetail( id );
         }
 
-        public async Task<string> UpdateMeetingl(BookedNewMeetingViewModel meeting)
+        public async Task<string> UpdateMeeting(BookedNewMeetingViewModel meeting)
         {
             return await _meetingRepository.UpdateDetail( meeting );
         }

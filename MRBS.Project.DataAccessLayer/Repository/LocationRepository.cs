@@ -17,7 +17,7 @@ namespace MRBS.Project.DataAccessLayer.Repository
             _meetingRoomDBContext = meetingRoomDBContext;
         }
 
-        public async Task<List<Location>> GetAllLocation()
+        public async Task<List<Location>> GetAllLocations()
         {
             return await _meetingRoomDBContext.Locations.ToListAsync();
         }

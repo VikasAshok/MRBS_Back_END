@@ -9,47 +9,49 @@ namespace MRBS.Project.API.Controllers
     [ApiController]
     public class MeetingRoomController : ControllerBase
     {
-        protected readonly IMeetingRoomService _meetingRoomService;
+        private readonly IMeetingRoomService _meetingRoomService;
+
         public MeetingRoomController(IMeetingRoomService meetingRoomService)
         {
-            _meetingRoomService= meetingRoomService;
+            _meetingRoomService = meetingRoomService;
         }
-        [HttpGet("Get")]
-        public async Task<IActionResult> GetAllDetail()
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAllDetails()
         {
-            return Ok(await _meetingRoomService.GetAllDetail());
+            return Ok(await _meetingRoomService.GetAllDetails());
         }
+
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _meetingRoomService.GetById(id));
-
+            return Ok(await _meetingRoomService.GetMeetingRoomById(id));
         }
 
         [HttpGet("GetByLocationId")]
         public async Task<IActionResult> GetByLocationId(int id)
         {
-            return Ok(await _meetingRoomService.GetByLocationId(id));
-
+            return Ok(await _meetingRoomService.GetMeetingRoomsByLocationId(id));
         }
-
 
         [HttpPost("AddDetail")]
         public async Task<IActionResult> AddDetail(MeetingRoom meetingRoom)
         {
-            var result = await _meetingRoomService.AddDetail(meetingRoom);
+            var result = await _meetingRoomService.AddMeetingRoomDetail(meetingRoom);
             return Ok(result);
         }
+
         [HttpPut("UpdateDetail")]
         public async Task<IActionResult> UpdateDetail(MeetingRoom meetingRoom)
         {
-            var result = await _meetingRoomService.UpdateDetail(meetingRoom);
+            var result = await _meetingRoomService.UpdateMeetingRoomDetail(meetingRoom);
             return Ok(result);
         }
+
         [HttpDelete("RemoveDetail")]
         public async Task<IActionResult> RemoveDetail(int id)
         {
-            await _meetingRoomService.RemoveDetail(id);
+            await _meetingRoomService.RemoveMeetingRoomDetail(id);
             return Ok();
         }
     }

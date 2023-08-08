@@ -10,7 +10,7 @@ namespace MRBS.Project.DataAccessLayer.Repository
 {
     public interface IMeetingRepository
     {
-        Task<IEnumerable<MeetingsViewModel>> GetAllDetail();
+        Task<IEnumerable<MeetingsViewModel>> GetAllDetails();
         Task<IEnumerable<ResponseMeetingsDetailsViewModel>> GetById(int id);     
         Task<BookedNewMeetingViewModel> AddDetail(BookedNewMeetingViewModel meeting);
         Task<string> UpdateDetail(BookedNewMeetingViewModel meeting);

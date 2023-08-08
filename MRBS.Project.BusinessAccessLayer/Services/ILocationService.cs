@@ -9,7 +9,7 @@ namespace MRBS.Project.BusinessAccessLayer.Services
 {
     public interface ILocationService
     {
-        Task<List<Location>> GetAllLocation();
+        Task<List<Location>> GetAllLocations();
         Task<Location> GetLocationById(int id);
     }
 }

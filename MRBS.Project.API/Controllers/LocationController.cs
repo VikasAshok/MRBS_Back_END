@@ -2,31 +2,31 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MRBS.Project.BusinessAccessLayer.Services;
-using MRBS.Project.DataAccessLayer.Repository;
 
 namespace MRBS.Project.API.Controllers
 {
-   // [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LocationController : ControllerBase
     {
         private readonly ILocationService _locationService;
+
         public LocationController(ILocationService locationService)
         {
-            _locationService= locationService;
+            _locationService = locationService;
         }
 
-        [HttpGet("Get")]
-        public async Task<IActionResult> GetAllLocation()
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAllLocations()
         {
-            return Ok(await _locationService.GetAllLocation());
+            return Ok(await _locationService.GetAllLocations());
         }
+
         [HttpGet("GetById")]
         public async Task<IActionResult> GetLocationById(int id)
         {
             return Ok(await _locationService.GetLocationById(id));
         }
-
     }
 }

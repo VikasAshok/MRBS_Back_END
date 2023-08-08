@@ -10,13 +10,13 @@ namespace MRBS.Project.DataAccessLayer.Repository
 {
     public interface IMeetingRoomRepository
     {
-        Task<List<MeetingRoom>> GetAllDetail();
-        Task<MeetingRoom> GetById(int id);
+        Task<List<MeetingRoom>> GetAllDetails();
+        Task<MeetingRoom> GetMeetingRoomById(int id);
 
-        Task<IEnumerable<MeetingRoomViewModel>> GetByLocationId(int id);
+        Task<IEnumerable<MeetingRoomViewModel>> GetMeetingRoomsByLocationId(int id);
 
-        Task<MeetingRoom> AddDetail(MeetingRoom meetingRoom);
-        Task<MeetingRoom> UpdateDetail(MeetingRoom meetingRoom);
-        Task RemoveDetail(int id);
+        Task<MeetingRoom> AddMeetingRoomDetail(MeetingRoom meetingRoom);
+        Task<MeetingRoom> UpdateMeetingRoomDetail(MeetingRoom meetingRoom);
+        Task RemoveMeetingRoomDetail(int id);
     }
 }

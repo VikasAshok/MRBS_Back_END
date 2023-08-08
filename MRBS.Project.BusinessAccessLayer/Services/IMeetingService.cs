@@ -10,12 +10,12 @@ namespace MRBS.Project.BusinessAccessLayer.Services
 {
     public interface IMeetingService 
     {
-        Task<IEnumerable<MeetingsViewModel>> GetAllMeeting();
+        Task<IEnumerable<MeetingsViewModel>> GetAllMeetings();
         Task<IEnumerable<ResponseMeetingsDetailsViewModel>> GetMeetingById(int id);
         Task<BookedNewMeetingViewModel> AddMeeting(BookedNewMeetingViewModel meeting);
        // Task<Meeting> GetMeetingById(int id);
-        Task<string> UpdateMeetingl(BookedNewMeetingViewModel meeting);
-        Task RemoveMeeting(int id);       
+        Task<string> UpdateMeeting(BookedNewMeetingViewModel meeting);
+        Task DeleteMeeting(int id);       
         Task<bool> CheckMeetingConflict(int meetingRoomId, DateTime startTime, DateTime endTime);
     }
 }

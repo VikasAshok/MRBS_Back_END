@@ -17,9 +17,9 @@ namespace MRBS.Project.BusinessAccessLayer.Services
             _locationRepository = locationRepository;
         }
 
-        public async Task<List<Location>> GetAllLocation()
+        public async Task<List<Location>> GetAllLocations()
         {
-            return await _locationRepository.GetAllLocation();
+            return await _locationRepository.GetAllLocations();
         }
 
         public async Task<Location> GetLocationById(int id)

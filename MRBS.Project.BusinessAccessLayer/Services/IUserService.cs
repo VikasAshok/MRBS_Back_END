@@ -11,7 +11,7 @@ namespace MRBS.Project.BusinessAccessLayer.Services
     public interface IUserService
     {
         User ValidateUser(Login loginuser);
-        List<string> GetToken(User user);
+        List<string> GenerateToken(User user);
        
     }
 }

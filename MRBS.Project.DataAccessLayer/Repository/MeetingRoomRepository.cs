@@ -17,24 +17,24 @@ namespace MRBS.Project.DataAccessLayer.Repository
             _meetingRoomDBContext = meetingRoomDBContext;
         }
 
-        public async Task<MeetingRoom> AddDetail(MeetingRoom meetingRoom)
+        public async Task<MeetingRoom> AddMeetingRoomDetail(MeetingRoom meetingRoom)
         {
             _meetingRoomDBContext.MeetingRooms.Add(meetingRoom);
             await _meetingRoomDBContext.SaveChangesAsync();
             return meetingRoom;
         }
 
-        public async Task<List<MeetingRoom>> GetAllDetail()
+        public async Task<List<MeetingRoom>> GetAllDetails()
         {
             return await _meetingRoomDBContext.MeetingRooms.ToListAsync();
         }
 
-        public async Task<MeetingRoom> GetById(int id)
+        public async Task<MeetingRoom> GetMeetingRoomById(int id)
         {
             return await _meetingRoomDBContext.MeetingRooms.FindAsync(id);
         }
 
-        public Task<IEnumerable<MeetingRoomViewModel>> GetByLocationId(int id)
+        public Task<IEnumerable<MeetingRoomViewModel>> GetMeetingRoomsByLocationId(int id)
         {
             var roomList =
                 (from r in _meetingRoomDBContext.MeetingRooms
@@ -51,14 +51,14 @@ namespace MRBS.Project.DataAccessLayer.Repository
             return Task.FromResult<IEnumerable<MeetingRoomViewModel>>(roomList); ;
         }
 
-        public async Task RemoveDetail(int id)
+        public async Task RemoveMeetingRoomDetail(int id)
         {
-            var result = await GetById(id);
+            var result = await GetMeetingRoomById(id);
             _meetingRoomDBContext.MeetingRooms.Remove(result);
             await _meetingRoomDBContext.SaveChangesAsync();
         }
 
-        public async Task<MeetingRoom> UpdateDetail(MeetingRoom meetingRoom)
+        public async Task<MeetingRoom> UpdateMeetingRoomDetail(MeetingRoom meetingRoom)
         {
             _meetingRoomDBContext.Entry(meetingRoom).State = EntityState.Modified;
             await _meetingRoomDBContext.SaveChangesAsync();

@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using MRBS.Project.API.Models;
 using MRBS.Project.BusinessAccessLayer.Services;
 using MRBS.Project.DataAccessLayer.ViewModel;
+using System;
 
 namespace MRBS.Project.API.Controllers
 {
@@ -11,16 +12,17 @@ namespace MRBS.Project.API.Controllers
     [ApiController]
     public class MeetingController : ControllerBase
     {
-        protected readonly IMeetingService _meetingService;
+        private readonly IMeetingService _meetingService;
+
         public MeetingController(IMeetingService meetingService)
         {
             _meetingService = meetingService;
         }
 
-        [HttpGet("Get")]
-        public async Task<IActionResult> GetAllMeetingDetail()
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAllMeetingDetails()
         {
-            return Ok(await _meetingService.GetAllMeeting());
+            return Ok(await _meetingService.GetAllMeetings());
         }
 
         [HttpGet("GetById")]
@@ -28,16 +30,16 @@ namespace MRBS.Project.API.Controllers
         {
             return Ok(await _meetingService.GetMeetingById(id));
         }
-      
-        [HttpPost("AddMeetingDetail")]
-        public async Task<IActionResult> AddMeetingDetail(BookedNewMeetingViewModel meeting)
+
+        [HttpPost("AddMeeting")]
+        public async Task<IActionResult> AddMeeting(BookedNewMeetingViewModel meeting)
         {
             try
             {
                 // Check for conflicts
-                bool isConflict = await _meetingService.CheckMeetingConflict(meeting.RoomId,meeting.StartTime,meeting.EndTime);
+                bool hasConflict = await _meetingService.CheckMeetingConflict(meeting.RoomId, meeting.StartTime, meeting.EndTime);
 
-                if (!isConflict)
+                if (hasConflict)
                 {
                     // Conflict detected, return an error response
                     return Conflict("This room is already booked for the selected time.");
@@ -55,11 +57,10 @@ namespace MRBS.Project.API.Controllers
             }
         }
 
-
-        [HttpPut("UpdateMeetingDetail")]
-        public async Task<IActionResult> UpdateMeetingDetail(BookedNewMeetingViewModel meeting)
+        [HttpPut("UpdateMeeting")]
+        public async Task<IActionResult> UpdateMeeting(BookedNewMeetingViewModel meeting)
         {
-            string result = await _meetingService.UpdateMeetingl(meeting);
+            string result = await _meetingService.UpdateMeeting(meeting);
 
             if (result == "SUCCESS")
             {
@@ -75,12 +76,12 @@ namespace MRBS.Project.API.Controllers
             }
         }
 
-        [HttpDelete("DeleteMeetingDetail")]
-        public async Task<IActionResult> RemoveMeetingDetail(int id)
-        { 
+        [HttpDelete("DeleteMeeting")]
+        public async Task<IActionResult> DeleteMeeting(int id)
+        {
             try
             {
-                await _meetingService.RemoveMeeting(id);
+                await _meetingService.DeleteMeeting(id);
                 return Ok("Meeting deleted successfully.");
             }
             catch (SqlException ex) when (ex.Number == 50000) // Catch the custom error raised by the stored procedure
@@ -92,8 +93,5 @@ namespace MRBS.Project.API.Controllers
                 return StatusCode(500, "An error occurred while deleting the meeting.");
             }
         }
-
-
-
     }
 }

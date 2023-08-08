@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MRBS.Project.API.Models;
 using MRBS.Project.BusinessAccessLayer.Services;
@@ -15,23 +14,22 @@ namespace MRBS.Project.API.Controllers
 
         public UserController(IUserService userService)
         {
-            _userService= userService;
+            _userService = userService;
         }
 
-       // [AllowAnonymous]
+        // [AllowAnonymous]
         [HttpPost("Login")]
         public IActionResult Login(Login login)
         {
             User? user = _userService.ValidateUser(login);
             if (user == null)
             {
-                return BadRequest("Invalid username or Password");
+                return BadRequest("Invalid username or password.");
             }
             else
             {
-                var strTkn = _userService.GetToken(user);
-                return Ok(new { token = strTkn });
-               
+                var token = _userService.GenerateToken(user);
+                return Ok(new { token });
             }
         }
     }
